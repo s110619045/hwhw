@@ -1,3 +1,5 @@
+import $  from 'jquery' ;
+
 $(document).ready(function () {
 	// when a hanburger menu is clicked
 	let $ul = $(".nav__list"),
@@ -8,3 +10,4 @@ $(document).ready(function () {
 		$ul.toggleClass("menu-click");
 	}); // end click event handler
 });
+
