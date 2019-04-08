@@ -1,4 +1,4 @@
-import $  from 'jquery' ;
+import '../css/style.scss';
 
 $(document).ready(function () {
 	// when a hanburger menu is clicked
