@@ -19,7 +19,7 @@ let path = require('path');
 
         rules:[{
     
-            test:/ \.(js)$/,
+            test: /\.(js)$/,
     
             exclude:/(node_modules)/,
     
@@ -35,8 +35,35 @@ let path = require('path');
     
             }
     
-        }]
+        },
+        {
+
+            test:/\.(jpe?g|png|gif|svg)$/,
     
-         }
+            use:[
+    
+                {
+    
+            loader:'url-loader',
+    
+    
+            options:{
+    
+                limit:1000,
+    
+                outputPath:'./images'
+    
+            }
+    
+    
+                },
+    
+                'image-webpack-loader'
+    
+            ]
+    
+        }]
+
+    }   
 
    }
