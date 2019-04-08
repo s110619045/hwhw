@@ -60,22 +60,19 @@ module.exports =
     
                     },
     
-                'image-webpack-loader'
+                    'image-webpack-loader'
     
                 ]
     
             },
-            {
 
+            {
                 use: ExtractTextPlugin.extract
                 ({
-     
                     use: 'css-loader'
-     
                 }),
      
-                  test: /\.css$/
-     
+                test: /\.css$/
             }
     
         ]
