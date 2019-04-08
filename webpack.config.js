@@ -1,69 +1,90 @@
 let path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
-
-   module.exports = {
+module.exports = 
+{
 
 	entry: './assets/js/script.js',
 
-	output:{
-
+    output:
+    {
 	        path: path.join(__dirname, './dist'),
 
 	        filename: 'bundle.js',
 
 	        publicPath: './dist/'
-
     },
-    module:{
 
-        rules:[{
-    
-            test: /\.(js)$/,
-    
-            exclude:/(node_modules)/,
-    
-            use:{
-    
-            loader:'babel-loader',
-    
-            options:{
-    
-                presets:['@babel/preset-env']
-    
-            }
-    
-            }
-    
-        },
-        {
+    module:
+    {
 
-            test:/\.(jpe?g|png|gif|svg)$/,
+        rules:
+        [
+            {
     
-            use:[
+                test: /\.(js)$/,
     
+                exclude:/(node_modules)/,
+    
+                use:
                 {
+                    loader:'babel-loader',
+                    options:
+                    {
+                        presets:['@babel/preset-env']
+                    }
+                }
     
-            loader:'url-loader',
+            },
+
+            {
+                test:/\.(jpe?g|png|gif|svg)$/,
+    
+                use:
+                [
+    
+                    {
+                    loader:'url-loader',
     
     
-            options:{
+                    options:
+                        {
     
-                limit:1000,
+                        limit:1000,
     
-                outputPath:'./images'
+                        outputPath:'./images'
     
-            }
+                        }
     
     
-                },
+                    },
     
                 'image-webpack-loader'
     
-            ]
+                ]
     
-        }]
+            },
+            {
 
-    }   
+                use: ExtractTextPlugin.extract
+                ({
+     
+                    use: 'css-loader'
+     
+                }),
+     
+                  test: /\.css$/
+     
+            }
+    
+        ]
 
-   }
+    },
+
+    plugins: 
+    [
+        new ExtractTextPlugin('./css/style.css')
+    ]   
+
+}
